@@ -12,6 +12,8 @@ contract TransparentUpgradeableProxy {
         _admin = admin;
     }
 
+		receive() external payable {}
+
     fallback() external payable {
         address impl = _implementation;
         require(impl != address(0), "Implementation address is zero");

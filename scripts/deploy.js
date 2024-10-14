@@ -3,19 +3,19 @@ async function main() {
 
 	const Implementation = await ethers.getContractFactory("Implementation");
 	const implementation = await Implementation.deploy();
-	await implementation.deployed();
+	await implementation.waitForDeployment();
 
 	const ImplementationV2 = await ethers.getContractFactory("ImplementationV2");
 	const implementationV2 = await ImplementationV2.deploy();
-	await implementationV2.deployed();
+	await implementationV2.waitForDeployment();
 
 	const TransparentUpgradeableProxy = await ethers.getContractFactory("TransparentUpgradeableProxy");
-	const proxy = await TransparentUpgradeableProxy.deploy(implementation.address, deployer.address);
-	await proxy.deployed();
+	const proxy = await TransparentUpgradeableProxy.deploy(implementation.target, deployer.address);
+	await proxy.waitForDeployment();
 
-	console.log("Implementation deployed to:", implementation.address);
-	console.log("ImplementationV2 deployed to:", implementationV2.address);
-	console.log("Proxy deployed to:", proxy.address);
+	console.log("Implementation deployed to:", implementation.target);
+	console.log("ImplementationV2 deployed to:", implementationV2.target);
+	console.log("Proxy deployed to:", proxy.target);
 }
 
 main()
