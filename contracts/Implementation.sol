@@ -2,13 +2,17 @@
 pragma solidity ^0.8.19;
 
 contract Implementation {
-    uint256 private value;
+    uint256 internal value;
 
-    function setValue(uint256 newValue) external {
+    constructor() {
+        value = 0;
+    }
+
+    function setValue(uint256 newValue) public {
         value = newValue;
     }
 
-    function getValue() external view returns (uint256) {
+    function getValue() public view returns (uint256) {
         return value;
     }
 }

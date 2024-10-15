@@ -1,17 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
-contract ImplementationV2 {
-    uint256 private value;
+import "./Implementation.sol";
 
-    function setValue(uint256 newValue) external {
-        value = newValue;
-    }
-
-    function getValue() external view returns (uint256) {
-        return value;
-    }
-
+contract ImplementationV2 is Implementation {
     function doubleValue() external view returns (uint256) {
         return value * 2;
     }

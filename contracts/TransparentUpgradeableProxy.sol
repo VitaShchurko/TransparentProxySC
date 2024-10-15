@@ -27,6 +27,10 @@ contract TransparentUpgradeableProxy {
         }
     }
 
+		function getImplementation() public view returns (address) {
+        return _implementation;
+    }
+
     function upgradeTo(address newImplementation) external {
         require(msg.sender == _admin, "Only admin can upgrade");
         _implementation = newImplementation;
